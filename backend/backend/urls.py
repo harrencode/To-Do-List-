@@ -23,11 +23,13 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 urlpatterns = [
     path('admin/', admin.site.urls),
     #linking resister view
-    path("api/user/resgister/", CreateUserView.as_view(), name="register"),
+    path("api/user/register/", CreateUserView.as_view(), name="register"),
     #linked Token Obtain pair View
     path("api/token/", TokenObtainPairView.as_view(), name="get_token"),
     #linked token obtain user view
     path("api/token/refresh/", TokenRefreshView.as_view(), name="refresh"),
     #linked all pre built urls from rest framework
-    path("api-auth/", include("rest_frameworkl.urls")),
+    path("api-auth/",include("rest_framework.urls")),
+    #link to api.url create user view can also be linekd in with this
+    path("api/",include("api.urls"))
 ]
