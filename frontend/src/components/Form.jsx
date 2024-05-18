@@ -3,6 +3,7 @@ import api from "../api"
 import{ useNavigate } from "react-router-dom"  //hook to access the navigatiom
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants"
 import "../styles/Form.css"
+import LoadingIndicator from "./LoadingIndiactor"
 
 
 //route-the route that wil follow and metod detect login or registration
@@ -64,6 +65,7 @@ function Form({route, method}){
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
         />
+        {loading && <LoadingIndicator />}
         <button className="form-button" type="submit">
              {name}
         </button>
