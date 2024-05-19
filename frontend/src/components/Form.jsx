@@ -14,6 +14,8 @@ function Form({route, method}){
     const navigate = useNavigate()
     
     const name = method === "login" ? "Login" : "Register";
+
+    
     
     //prevent form submitting the form which will remove default behaviour
     const handleSubmit = async(e) => {

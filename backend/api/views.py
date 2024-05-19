@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from rest_framework import generics
+from rest_framework import generics,viewsets
 from .serializers import UserSerializer,NoteSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from.models import Note
@@ -47,3 +47,20 @@ class NoteDelete(generics.DestroyAPIView):
     def get_queryset(self):
         user=self.request.user
         return Note.objects.filter(author=user)
+
+class NoteUpdate(generics.UpdateAPIView):
+    serializer_class = NoteSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # Filter notes by the authenticated user
+        return Note.objects.filter(author=self.request.user)
+
+class NoteViewSet(viewsets.ModelViewSet):
+    queryset = Note.objects.all()
+    serializer_class = NoteSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # Return only notes created by the current user
+        return self.queryset.filter(author=self.request.user)

@@ -32,4 +32,5 @@ urlpatterns = [
     path("api-auth/",include("rest_framework.urls")),
     #link to api.url create user view can also be linekd in with this
     path("api/",include("api.urls"))
+    
 ]
