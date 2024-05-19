@@ -71,6 +71,5 @@ function Form({route, method}){
         </button>
 
     </form>
-
 }
 export default Form
